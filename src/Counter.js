@@ -16,7 +16,7 @@ class Counter extends Component {
         this.state = {
             counterValue: this.props.initValue,
             showClock: true,
-            stepValue: <input ref={(data) => { this._inputStep = data} } type="number" />             
+            value: "",            
         };
     }
 
@@ -43,14 +43,15 @@ class Counter extends Component {
     
     updateStep = (action) => {
 
-        this.setState((prevProps) => {
+        this.setState((prevState) => {
             let step = this._inputStep.value;
-            // let step = prevState.stepValue;
-
+            let currentCounterValue = prevState.counterValue;
             return({                
-                stepValue: step
+                value: step
             });
         });
+
+     
     }
         // Przekazanie obiektu do metody SetState
         // this.setState({
@@ -85,7 +86,7 @@ class Counter extends Component {
                 Licznik:
                 <Display displayValue={this.state.counterValue} />
                 <ButtonsPanel buttonMethod={this.changeValue} />
-                <Step onChange={this.updateStep} />
+                <Step inputRef={(data) => {this._inputStep = data} } onChange={this.updateStep} type="number" />
                 {/* {clockElement} */}
             </div>
         );
