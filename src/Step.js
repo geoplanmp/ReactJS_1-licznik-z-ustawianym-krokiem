@@ -1,13 +1,19 @@
 import React from "react";
 import './Step.css';
 
-<input ref={(data) => {this._inputStep = data} } type="number" />
-function Step (props) {
-    
+const Step = (props) => {
+    let _inputStep
     return (
         <div className="step">
-            Krok: <input type="number" ref={props.inputRef} min="1" step="5" /> 
+            Krok: {" "} 
+            <input ref={(data) => {
+                _inputStep = data}}
+                onChange={() => props.stepMethod(_inputStep)} 
+                type="number"
+                min = "1"
+            />                
         </div>
     );
 }
 export default Step;
+
